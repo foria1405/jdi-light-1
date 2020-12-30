@@ -28,6 +28,7 @@ public @interface MobileFindBy {
     String androidUIAutomator() default "";
     String androidDataMatcher() default "";
     String androidViewTag() default "";
+    String image() default "";
 
     // Group
     String group() default "";
