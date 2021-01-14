@@ -1,4 +1,4 @@
-package nativeapp_android.tests.SystemAndroid11Tests;
+package android10NonApplicationTests;
 
 import nativeapp_android.MobileFileManagerInit;
 import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
@@ -13,10 +13,7 @@ import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.Enumeration;
 
-import static nativeapp.android.AndroidFileManager.downloads;
-import static nativeapp.android.AndroidFileManager.fileManager;
-import static nativeapp.android.AndroidFileManager.fileOnAndroid;
-import static nativeapp.android.AndroidFileManager.roots;
+import static nativeapp.android.AndroidFileManager.*;
 
 public class MobileFileManagerTests extends MobileFileManagerInit {
 
@@ -66,4 +63,5 @@ public class MobileFileManagerTests extends MobileFileManagerInit {
         zipFile.close();
         Assert.assertTrue(findFile);
     }
+
 }
