@@ -18,5 +18,6 @@ public class IOSAppInit {
     public static MainPage mainPage;
     public static LabelViewPage labelViewPage;
     public static ToolBarPage toolBarPage;
+    public static TablePage tablePage;
 
 }

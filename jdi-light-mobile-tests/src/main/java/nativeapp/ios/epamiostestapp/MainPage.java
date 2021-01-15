@@ -41,4 +41,7 @@ public class MainPage {
     @MobileFindBy(xpath = "//XCUIElementTypeCell[@name=\"ToolBarPage\"]")
     public static MenuItem menuToolBarPage;
 
+    @MobileFindBy(xpath = "//XCUIElementTypeCell[@name=\"TablePage\"]")
+    public static MenuItem menuTablePage;
+
 }
