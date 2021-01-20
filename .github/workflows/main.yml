@@ -73,3 +73,11 @@ jobs:
     #       mvn -ntp install -DskipTests
     #       echo arguments=$CHROME_ARGS > "./$ANGULAR_TESTS/src/test/resources/$CHROME_PROPERTIES"
     #       mvn verify $WITH_PARAMS $UNIT -pl $GROUP_ID:$ANGULAR_TESTS
+  report:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy allure reports to netlify
+      run: |
+        npm install -g allure-commandline
+        npm install -g netlify-cli
+        allure --version
