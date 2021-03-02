@@ -27,7 +27,7 @@ env:
 
 on:
   push:
-    branches: [ fix_branch_for_some_tests ] # ENTER branch name there
+    branches: [ check_forms ] # ENTER branch name there
 # !!!! PLEASE do not change this file in master, as it's only template for branch debug in GitHub Actions
 
 jobs:
@@ -91,11 +91,11 @@ jobs:
 # !!! select required project you debug to save time.
 # All other projects you can delete or comment.
 
-    - name: Tests BDD
-      if: ${{ steps.jdi-compile.outcome == 'success' }}
-      timeout-minutes: 90 # prevent blocking
-      run: |
-          mvn verify $WITH_PARAMS -DCucumber.options="--tags ~@ignore_for_firefox" -Dchrome.capabilities.path=${CHROME_PROPERTIES} -Dff.capabilities.path=${FIREFOX_PROPERTIES} -pl $GROUP_ID:$BDD_TESTS --fail-at-end
+#    - name: Tests BDD
+#      if: ${{ steps.jdi-compile.outcome == 'success' }}
+#      timeout-minutes: 90 # prevent blocking
+#      run: |
+#          mvn verify $WITH_PARAMS -DCucumber.options="--tags ~@ignore_for_firefox" -Dchrome.capabilities.path=${CHROME_PROPERTIES} -Dff.capabilities.path=${FIREFOX_PROPERTIES} -pl $GROUP_ID:$BDD_TESTS --fail-at-end
 
 #####  Example for original allure data upload
 #    - name: 'Upload BDD results'
@@ -105,10 +105,10 @@ jobs:
 #        path: ./${BDD_TESTS}/target/allure-results/
 #        retention-days: 1
 
-    - name: Tests bootstrap Unit
-      if: ${{ steps.jdi-compile.outcome == 'success' }}
-      timeout-minutes: 90 # prevent blocking
-      run: mvn verify $WITH_PARAMS -Dchrome.capabilities.path=${CHROME_PROPERTIES} -Dff.capabilities.path=${FIREFOX_PROPERTIES} -pl $GROUP_ID:$BOOTSTRAP_TESTS --fail-at-end
+#    - name: Tests bootstrap Unit
+#      if: ${{ steps.jdi-compile.outcome == 'success' }}
+#      timeout-minutes: 90 # prevent blocking
+#      run: mvn verify $WITH_PARAMS -Dchrome.capabilities.path=${CHROME_PROPERTIES} -Dff.capabilities.path=${FIREFOX_PROPERTIES} -pl $GROUP_ID:$BOOTSTRAP_TESTS --fail-at-end
 
 #    - name: Run tests - Angular Unit tests
 #      if: ${{ steps.jdi-compile.outcome == 'success' }}
@@ -130,15 +130,15 @@ jobs:
       timeout-minutes: 90 # prevent blocking
       run: mvn verify $WITH_PARAMS -Dchrome.capabilities.path=${CHROME_PROPERTIES} -Dff.capabilities.path=${FIREFOX_PROPERTIES} -pl $GROUP_ID:$HTML_TESTS --fail-at-end
 
-    - name: Run tests - Test Examples
-      if: ${{ steps.jdi-compile.outcome == 'success' }}
-      timeout-minutes: 90 # prevent blocking
-      run: mvn verify $WITH_PARAMS -Dchrome.capabilities.path=${CHROME_PROPERTIES} -Dff.capabilities.path=${FIREFOX_PROPERTIES} -pl $GROUP_ID:$EXAMPLES --fail-at-end
+#    - name: Run tests - Test Examples
+#      if: ${{ steps.jdi-compile.outcome == 'success' }}
+#      timeout-minutes: 90 # prevent blocking
+#      run: mvn verify $WITH_PARAMS -Dchrome.capabilities.path=${CHROME_PROPERTIES} -Dff.capabilities.path=${FIREFOX_PROPERTIES} -pl $GROUP_ID:$EXAMPLES --fail-at-end
 
-    - name: Run tests - Performance
-      if: ${{ steps.jdi-compile.outcome == 'success' }}
-      timeout-minutes: 90 # prevent blocking
-      run: mvn verify $WITH_PARAMS -Dchrome.capabilities.path=${CHROME_PROPERTIES} -Dff.capabilities.path=${FIREFOX_PROPERTIES} -pl $GROUP_ID:$PERFORMANCE --fail-at-end
+#    - name: Run tests - Performance
+#      if: ${{ steps.jdi-compile.outcome == 'success' }}
+#      timeout-minutes: 90 # prevent blocking
+#      run: mvn verify $WITH_PARAMS -Dchrome.capabilities.path=${CHROME_PROPERTIES} -Dff.capabilities.path=${FIREFOX_PROPERTIES} -pl $GROUP_ID:$PERFORMANCE --fail-at-end
 
     - name: Collect reports
       if: ${{ steps.jdi-compile.outcome == 'success' }}

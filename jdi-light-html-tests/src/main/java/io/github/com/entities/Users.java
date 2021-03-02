@@ -18,6 +18,22 @@ public class Users {
             c.religion = "Other";
         });
     }
+
+    public static Contacts generateContact(String suffix) {
+        return new Contacts().set(c -> {
+            c.firstName = "Roman"+suffix;
+            c.lastName = "Iovlev"+suffix;
+            c.position = "ChiefQA"+suffix;
+            //c.passport = true;
+            c.passportNumber = "4321"+suffix;
+            c.passportSeria = suffix;
+            c.description = "JDI - awesome UI automation tool" + suffix;
+            c.acceptConditions = "true";
+            c.gender = "Female";
+            c.religion = "Other";
+        });
+    }
+
     public static Contacts DEFAULT_CONTACT = defaultContact();
 
     public static Contacts LOWER_CASE_NAME_CONTACT =

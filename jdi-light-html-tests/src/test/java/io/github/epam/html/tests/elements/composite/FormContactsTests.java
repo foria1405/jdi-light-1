@@ -1,10 +1,13 @@
 package io.github.epam.html.tests.elements.composite;
 
+import io.github.com.entities.Contacts;
 import io.github.epam.TestsInit;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.List;
+import java.util.Random;
 
 import static com.epam.jdi.light.common.FormFilters.ALL;
 import static com.epam.jdi.light.elements.composite.WebPage.refresh;
@@ -26,12 +29,24 @@ public class FormContactsTests implements TestsInit {
         refresh();
     }
 
+    @DataProvider(name = "contacts", parallel = true)
+    public static Object[][] createContacts() {
+        return new Object[][] {
+                {generateContact(getRandomNumberString())},
+                {generateContact(getRandomNumberString())},
+                {generateContact(getRandomNumberString())},
+                {generateContact(getRandomNumberString())},
+                {generateContact(getRandomNumberString())},
+                {generateContact(getRandomNumberString())},
+                {generateContact(getRandomNumberString())}
+        };
+    }
 
-    @Test
-    public void fillContactFormTest() {
-        main.contactForm.description.getText();
-        main.contactForm.fill(DEFAULT_CONTACT);
-        main.contactForm.check(DEFAULT_CONTACT);
+
+    @Test(dataProvider = "contacts")
+    public void fillContactFormTest(Contacts contact) {
+        main.contactForm.fill(contact);
+        main.contactForm.check(contact);
     }
 
     @Test
@@ -41,10 +56,10 @@ public class FormContactsTests implements TestsInit {
         checkContactFormSubmitted();
     }
 
-    @Test
-    public void submitEntityToContactFormTest() {
-        main.contactForm.submit(DEFAULT_CONTACT);
-        main.contactForm.check(DEFAULT_CONTACT);
+    @Test(dataProvider = "contacts")
+    public void submitEntityToContactFormTest(Contacts contact) {
+        main.contactForm.submit(contact);
+        main.contactForm.check(contact);
         checkContactFormSubmitted();
     }
 
@@ -57,12 +72,13 @@ public class FormContactsTests implements TestsInit {
     @Test
     public void submitTextToContactFormUsingNonExistentButtonTest() {
         main.contactFormCustom.submit("Roman", "nonExistent");
+        checkContactFormSubmitted();
     }
 
-    @Test
-    public void submitEntityToContactFormUsingCustomButtonTest() {
-        main.contactForm.submit(DEFAULT_CONTACT, "custom");
-        main.contactForm.check(DEFAULT_CONTACT);
+    @Test(dataProvider = "contacts")
+    public void submitEntityToContactFormUsingCustomButtonTest(Contacts contact) {
+        main.contactForm.submit(contact, "custom");
+        main.contactForm.check(contact);
         checkContactFormSubmitted();
     }
 
@@ -71,26 +87,26 @@ public class FormContactsTests implements TestsInit {
         main.contactFormCustom.submit(DEFAULT_CONTACT, "nonExistent");
     }
 
-    @Test
-    public void plainSubmitTest() {
-        main.contactForm.fill(DEFAULT_CONTACT);
+    @Test(dataProvider = "contacts")
+    public void plainSubmitTest(Contacts contact) {
+        main.contactForm.fill(contact);
         main.contactForm.submit();
-        main.contactForm.check(DEFAULT_CONTACT);
+        main.contactForm.check(contact);
         checkContactFormSubmitted();
     }
 
-    @Test
-    public void pressButtonTest() {
-        main.contactFormCustom.fill(DEFAULT_CONTACT);
+    @Test(dataProvider = "contacts")
+    public void pressButtonTest(Contacts contact) {
+        main.contactFormCustom.fill(contact);
         main.contactFormCustom.pressButton("custom");
-        main.contactFormCustom.check(DEFAULT_CONTACT);
+        main.contactFormCustom.check(contact);
         checkContactFormSubmitted();
     }
 
-    @Test
-    public void verifyMethodPositiveTest() {
-        main.contactForm.fill(DEFAULT_CONTACT);
-        List<String> verified = main.contactForm.verify(DEFAULT_CONTACT);
+    @Test(dataProvider = "contacts")
+    public void verifyMethodPositiveTest(Contacts contact) {
+        main.contactForm.fill(contact);
+        List<String> verified = main.contactForm.verify(contact);
         assertEquals(verified.size(), 0);
     }
 
@@ -102,11 +118,11 @@ public class FormContactsTests implements TestsInit {
         assertTrue(verified.get(0).contains("Roman"));
     }
 
-    @Test
-    public void checkMethodPositiveTest() {
-        main.contactForm.fill(DEFAULT_CONTACT);
-        main.contactForm.check(DEFAULT_CONTACT);
-        assertEquals(main.contactForm.verify(DEFAULT_CONTACT).size(), 0);
+    @Test(dataProvider = "contacts")
+    public void checkMethodPositiveTest(Contacts contact) {
+        main.contactForm.fill(contact);
+        main.contactForm.check(contact);
+        assertEquals(main.contactForm.verify(contact).size(), 0);
     }
 
     @Test(expectedExceptions = RuntimeException.class)
@@ -116,88 +132,88 @@ public class FormContactsTests implements TestsInit {
         main.contactForm.check(DEFAULT_CONTACT);
     }
 
-    @Test
-    public void sendMethodTest() {
-        main.contactFormCustom.fill(DEFAULT_CONTACT);
+    @Test(dataProvider = "contacts")
+    public void sendMethodTest(Contacts contact) {
+        main.contactFormCustom.fill(contact);
         main.contactFormCustom.send();
-        main.contactFormCustom.check(DEFAULT_CONTACT);
+        main.contactFormCustom.check(contact);
         checkContactFormSubmitted();
     }
 
-    @Test
-    public void sendEntityMethodTest() {
-        main.contactFormCustom.send(DEFAULT_CONTACT);
-        main.contactFormCustom.check(DEFAULT_CONTACT);
+    @Test(dataProvider = "contacts")
+    public void sendEntityMethodTest(Contacts contact) {
+        main.contactFormCustom.send(contact);
+        main.contactFormCustom.check(contact);
         checkContactFormSubmitted();
     }
 
-    @Test
-    public void addEntityMethodTest() {
-        main.contactFormCustom.add(DEFAULT_CONTACT);
-        main.contactFormCustom.check(DEFAULT_CONTACT);
+    @Test(dataProvider = "contacts")
+    public void addEntityMethodTest(Contacts contact) {
+        main.contactFormCustom.add(contact);
+        main.contactFormCustom.check(contact);
         checkContactFormSubmitted();
     }
 
-    @Test
-    public void publishMethodTest() {
-        main.contactFormCustom.publish(DEFAULT_CONTACT);
-        main.contactFormCustom.check(DEFAULT_CONTACT);
+    @Test(dataProvider = "contacts")
+    public void publishMethodTest(Contacts contact) {
+        main.contactFormCustom.publish(contact);
+        main.contactFormCustom.check(contact);
         checkContactFormSubmitted();
     }
 
-    @Test
-    public void saveMethodTest() {
-        main.contactFormCustom.save(DEFAULT_CONTACT);
-        main.contactFormCustom.check(DEFAULT_CONTACT);
+    @Test(dataProvider = "contacts")
+    public void saveMethodTest(Contacts contact) {
+        main.contactFormCustom.save(contact);
+        main.contactFormCustom.check(contact);
         checkContactFormSubmitted();
     }
 
-    @Test
-    public void updateMethodTest() {
-        main.contactFormCustom.update(DEFAULT_CONTACT);
-        main.contactFormCustom.check(DEFAULT_CONTACT);
+    @Test(dataProvider = "contacts")
+    public void updateMethodTest(Contacts contact) {
+        main.contactFormCustom.update(contact);
+        main.contactFormCustom.check(contact);
         checkContactFormSubmitted();
     }
 
-    @Test
-    public void cancelMethodTest() {
-        main.contactFormCustom.cancel(DEFAULT_CONTACT);
-        main.contactFormCustom.check(DEFAULT_CONTACT);
+    @Test(dataProvider = "contacts")
+    public void cancelMethodTest(Contacts contact) {
+        main.contactFormCustom.cancel(contact);
+        main.contactFormCustom.check(contact);
         checkContactFormSubmitted();
     }
 
-    @Test
-    public void closeMethodTest() {
-        main.contactFormCustom.close(DEFAULT_CONTACT);
-        main.contactFormCustom.check(DEFAULT_CONTACT);
+    @Test(dataProvider = "contacts")
+    public void closeMethodTest(Contacts contact) {
+        main.contactFormCustom.close(contact);
+        main.contactFormCustom.check(contact);
         checkContactFormSubmitted();
     }
 
-    @Test
-    public void backMethodTest() {
-        main.contactFormCustom.back(DEFAULT_CONTACT);
-        main.contactFormCustom.check(DEFAULT_CONTACT);
+    @Test(dataProvider = "contacts")
+    public void backMethodTest(Contacts contact) {
+        main.contactFormCustom.back(contact);
+        main.contactFormCustom.check(contact);
         checkContactFormSubmitted();
     }
 
-    @Test
-    public void selectMethodTest() {
-        main.contactFormCustom.select(DEFAULT_CONTACT);
-        main.contactFormCustom.check(DEFAULT_CONTACT);
+    @Test(dataProvider = "contacts")
+    public void selectMethodTest(Contacts contact) {
+        main.contactFormCustom.select(contact);
+        main.contactFormCustom.check(contact);
         checkContactFormSubmitted();
     }
 
-    @Test
-    public void nextMethodTest() {
-        main.contactFormCustom.next(DEFAULT_CONTACT);
-        main.contactFormCustom.check(DEFAULT_CONTACT);
+    @Test(dataProvider = "contacts")
+    public void nextMethodTest(Contacts contact) {
+        main.contactFormCustom.next(contact);
+        main.contactFormCustom.check(contact);
         checkContactFormSubmitted();
     }
 
-    @Test
-    public void searchMethodTest() {
-        main.contactFormCustom.search(DEFAULT_CONTACT);
-        main.contactFormCustom.check(DEFAULT_CONTACT);
+    @Test(dataProvider = "contacts")
+    public void searchMethodTest(Contacts contact) {
+        main.contactFormCustom.search(contact);
+        main.contactFormCustom.check(contact);
         checkContactFormSubmitted();
     }
 
@@ -221,10 +237,10 @@ public class FormContactsTests implements TestsInit {
         main.contactFormCustomFill.check(UPPER_CASE_NAME_CONTACT);
     }
 
-    @Test
-    public void uiFormTest() {
-        main.contactFormUI.submit(DEFAULT_CONTACT);
-        main.contactFormUI.check(DEFAULT_CONTACT);
+    @Test(dataProvider = "contacts")
+    public void uiFormTest(Contacts contact) {
+        main.contactFormUI.submit(contact);
+        main.contactFormUI.check(contact);
         checkContactFormSubmitted();
     }
 
@@ -237,5 +253,13 @@ public class FormContactsTests implements TestsInit {
     private void checkContactFormSubmitted() {
         lastLogEntry.assertThat()
                 .text(containsString("submit:button clicked"));
+    }
+
+    // It will generate 6 digit random Number
+    private static String getRandomNumberString() {
+        Random rnd = new Random();
+        int number = rnd.nextInt(999999);
+        // this will convert any number sequence into 6 character.
+        return String.format("%06d", number);
     }
 }
