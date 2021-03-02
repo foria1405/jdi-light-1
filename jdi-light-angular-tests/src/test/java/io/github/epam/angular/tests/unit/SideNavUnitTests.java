@@ -28,8 +28,7 @@ public class SideNavUnitTests extends TestsInit {
         assertEquals(implicitMainContent.getContent().getText(), "Implicit main content");
     }
 
-    // failed in CI
-    @Test(enabled = false)
+    @Test
     public void getEventsTest() {
         sideNavToggle.show();
         sideNavToggle.click();

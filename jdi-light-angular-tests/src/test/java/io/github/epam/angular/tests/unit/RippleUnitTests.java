@@ -119,7 +119,7 @@ public class RippleUnitTests extends TestsInit {
         assertTrue(rippleContainer.isCentered());
     }
 
-    @Test(enabled = false)
+    @Test
     public void randomMouseClickTest() {
         refresh();
         rippleContainer.show();
