@@ -99,6 +99,7 @@ public class DropdownExTests implements TestsInit {
         assertThat(colors.listEnabled(), hasItems("Colors", "Red", "Green", "Blue", "Yellow"));
         assertThat(colors.listDisabled(), empty());
         assertThat(colors.values(), hasItems("Colors", "Red", "Green", "Blue", "Yellow"));
+        assertThat(colors.isExpanded(), is(true));
     }
 
     @Test
