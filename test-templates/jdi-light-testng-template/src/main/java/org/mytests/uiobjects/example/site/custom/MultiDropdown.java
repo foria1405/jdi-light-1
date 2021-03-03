@@ -28,11 +28,11 @@ public class MultiDropdown extends UIListBase<UISelectAssert<?,?>>
     By values = By.tagName("li");
     By valueTemplate = By.xpath(".//a[label[text()='%s']]");
     By value = By.cssSelector("button");
-    By valuesConatiner = By.tagName("ul");
+    By valuesContainer = By.tagName("ul");
 
     UIElement root() { return $(By.xpath(".."),this).setName("root"); }
     UIElement expander() { return root().find(expandArrow).setName("expandArrow"); }
-    UIElement valuesList() { return root().find(valuesConatiner).setName("valuesContainer"); }
+    UIElement valuesList() { return root().find(valuesContainer).setName("valuesContainer"); }
     UIElement value(String name) {
         return root().find(fillByTemplate(valueTemplate, name)).setName("valueTemplate");
     }
