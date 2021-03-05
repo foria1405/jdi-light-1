@@ -30,7 +30,7 @@ public class FormContactsTests implements TestsInit {
         refresh();
     }
 
-    @DataProvider(name = "contacts")
+    @DataProvider(name = "contacts", parallel = true)
     public static Object[][] createContacts() {
         return new Object[][] {
                 {generateContact(getRandomNumberString())},
