@@ -4,8 +4,8 @@
     <test name="Functional Tests" thread-count="4">
         <packages>
             <package name="io.github.epam.html.tests.elements.complex.dropdown"/>
-            <!-- package name="io.github.epam.html.tests.elements.complex.*"/>
-            <package name="io.github.epam.html.tests.elements.complex"/>
+            <package name="io.github.epam.html.tests.elements.composite.*"/>
+            <!-- package name="io.github.epam.html.tests.elements.complex"/>
             <package name="io.github.epam.html.tests.elements.composite.*"/>
             <package name="io.github.epam.html.tests.elements.composite.page.init"/>
             <package name="io.github.epam.html.tests.elements.composite"/>
