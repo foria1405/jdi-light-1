@@ -2,6 +2,7 @@ package io.github.epam.html.tests.elements.composite;
 
 import io.github.com.entities.Contacts;
 import io.github.epam.TestsInit;
+import org.openqa.selenium.Keys;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -242,6 +243,27 @@ public class FormContactsTests implements TestsInit {
         main.contactFormUI.submit(contact);
         main.contactFormUI.check(contact);
         checkContactFormSubmitted();
+    }
+
+    @Test(dataProvider = "contacts")
+    public void dblClickCheckTest(Contacts contact) {
+        main.contactForm.submit(contact);
+        main.contactForm.check(contact);
+        checkContactFormSubmitted();
+        main.contactForm.lastName.doubleClick();
+        main.contactForm.lastName.sendKeys(Keys.DELETE);
+        main.contactForm.position.doubleClick();
+        main.contactForm.position.sendKeys(Keys.DELETE);
+        main.contactForm.passportNumber.doubleClick();
+        main.contactForm.passportNumber.sendKeys(Keys.DELETE);
+        main.contactForm.passportSeria.doubleClick();
+        main.contactForm.passportSeria.sendKeys(Keys.DELETE);
+        main.contactForm.passportSeria.sendKeys(Keys.ENTER);
+        checkContactFormSubmitted();
+        main.contactForm.lastName.assertThat().text("");
+        main.contactForm.position.assertThat().text("");
+        main.contactForm.passportNumber.assertThat().text("");
+        main.contactForm.passportSeria.assertThat().text("");
     }
 
     @Test
