@@ -1,84 +1,55 @@
 package com.epam.jdi.light.angular.elements.common;
 
-import com.epam.jdi.light.angular.asserts.ProgressBarAssert;
 import com.epam.jdi.light.common.JDIAction;
 import com.epam.jdi.light.elements.base.UIBaseElement;
 import com.epam.jdi.light.elements.common.UIElement;
+import com.epam.jdi.light.ui.html.asserts.ProgressAssert;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.epam.jdi.light.angular.elements.enums.ProgressBarModes.BUFFER;
-import static com.epam.jdi.light.angular.elements.enums.ProgressBarModes.DETERMINATE;
+import static com.epam.jdi.light.common.Exceptions.exception;
 import static com.epam.jdi.light.ui.html.HtmlUtils.getDouble;
 import static com.epam.jdi.light.ui.html.HtmlUtils.getInt;
 
-public class ProgressBar extends UIBaseElement<ProgressBarAssert> {
-
+public class ProgressBar extends UIBaseElement<ProgressAssert> {
     @JDIAction(value = "Get '{name}' max limit")
-
     public int max() {
         return getInt(core().attr("aria-valuemax"));
     }
-
 
     @JDIAction(value = "Get '{name}' min limit")
     public int min() {
         return getInt(core().attr("aria-valuemin"));
     }
 
-    @JDIAction(value = "Get '{name}' mode value")
-    public String mode() {
-        return core().attr("mode");
-    }
-
     @JDIAction("Get '{name}' progress value ")
-    public int value() throws Exception {
-        if (mode().equals(DETERMINATE.getMode()) || mode().equals(BUFFER.getMode())) {
-            return getInt(core().attr("aria-valuenow"));
-        }
-        throw new Exception("No exist 'value' attribute in this mode");
+    public int value() {
+        return getInt(core().attr("aria-valuenow"));
     }
 
-    public String getValue() throws Exception {
+    public String getValue() {
         return value() + "";
     }
 
     @JDIAction("Get '{name}' progress buffer value ")
-    public double bufferValue() throws Exception {
-        UIElement bufferStyleClass = core().find(".mat-progress-bar-buffer");
+    public double buffer() {
+        return getProgress(".mat-progress-bar-buffer");
+    }
+
+    @JDIAction("Get '{name}' progress value ")
+    public double progress() {
+        return getProgress(".mat-progress-bar-primary");
+    }
+    private double getProgress(String cssClass) {
+        UIElement bufferStyleClass = core().find(cssClass);
         String styleString = bufferStyleClass.attr("style");
-        Pattern bufferValuePattern = Pattern.compile("\\((.*?)\\)");
+        Pattern bufferValuePattern = Pattern.compile("\\(([0-9\\.]+)");
         Matcher matcher = bufferValuePattern.matcher(styleString);
         if (matcher.find()) {
             String bufferValue = matcher.group(1);
             return getDouble(bufferValue);
         }
-        throw new Exception("No such expression in style string");
-    }
-
-    @Override
-    public boolean isVisible() {
-        if (isHidden())
-            return false;
-        Object isInView = core().js().executeScript(
-                "const rect = arguments[0].getBoundingClientRect();\n" +
-                        "if (!rect) return false;\n" +
-                        "const windowHeight = Math.min(window.innerHeight || document.documentElement.clientHeight);\n" +
-                        "const windowWidth = Math.min(window.innerWidth || document.documentElement.clientWidth);\n" +
-                        "const ratio = arguments[1];\n" +
-                        "const reduceHeight = ratio*windowHeight;\n" +
-                        "const reduceWidth = ratio*windowWidth\n" +
-                        "if (rect.top < reduceHeight) return false;\n" +
-                        "if (rect.left < reduceWidth) return false;\n" +
-                        "if (rect.bottom > windowHeight-reduceHeight) return false;\n" +
-                        "if (rect.right > windowWidth-reduceWidth) return false;\n" +
-                        "return true;", core().getWebElement(), 0.001);
-        return (boolean) isInView;
-    }
-
-    @Override
-    public ProgressBarAssert is() {
-        return new ProgressBarAssert().set(this);
+        throw exception("No such expression in style string");
     }
 }

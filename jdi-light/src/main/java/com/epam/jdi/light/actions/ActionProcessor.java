@@ -64,7 +64,6 @@ public class ActionProcessor {
         String classMethod = getJpClass(jp).getSimpleName() + "." + getMethodName(jp);
         logger.debug("<>@JDebug: " + classMethod);
         try {
-            ActionObject jInfo = newInfo(jp, "JDebug");
             Object result = jp.proceed();
             logger.debug("<>@JDebug: %s >>> %s", classMethod, (result == null ? "NO RESULT" : result));
             return result;

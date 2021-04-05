@@ -40,21 +40,9 @@ public class CheckboxTests extends TestsInit {
     }
 
     @Test
-    public void indeterminateTest() {
-        indeterminateCheckbox.click();
-        resultCheckbox.is().indeterminate();
-    }
-
-    @Test
     public void disabledOption() {
         disabledCheckbox.click();
         resultCheckbox.is().disabled();
     }
 
-    @Test
-    public void configurableCheckboxTest() {
-        indeterminateCheckbox.check();
-        alignBeforeRadioButton.click();
-        resultCheckbox.is().indeterminate().and().cssClass("mat-checkbox-label-before");
-    }
 }

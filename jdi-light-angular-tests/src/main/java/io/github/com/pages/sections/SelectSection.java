@@ -1,8 +1,6 @@
 package io.github.com.pages.sections;
 
 import com.epam.jdi.light.angular.elements.common.Checkbox;
-import com.epam.jdi.light.angular.elements.complex.MaterialSelector;
-import com.epam.jdi.light.angular.elements.complex.NativeSelector;
 import com.epam.jdi.light.ui.html.elements.common.Text;
 
 public class SelectSection {

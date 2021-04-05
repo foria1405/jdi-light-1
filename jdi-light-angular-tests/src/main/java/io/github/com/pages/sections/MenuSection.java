@@ -1,12 +1,12 @@
 package io.github.com.pages.sections;
 
-import com.epam.jdi.light.angular.elements.complex.NestedDropdownMenu;
+import com.epam.jdi.light.angular.elements.complex.DropdownMenu;
 import com.epam.jdi.light.ui.html.elements.common.Text;
 
 public class MenuSection {
-    public static NestedDropdownMenu basicMenuButton;
-    public static NestedDropdownMenu menuWithIconsButton;
-    public static NestedDropdownMenu nestedMenuButton;
+    public static DropdownMenu basicMenuButton;
+    public static DropdownMenu menuWithIconsButton;
+    public static DropdownMenu nestedMenuButton;
 
     public static Text basicMenuSelectedOption;
     public static Text iconsMenuSelectedOption;

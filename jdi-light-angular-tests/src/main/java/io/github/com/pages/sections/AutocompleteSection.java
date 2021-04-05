@@ -1,6 +1,6 @@
 package io.github.com.pages.sections;
 
-import com.epam.jdi.light.angular.elements.common.SlideToggle;
+import com.epam.jdi.light.angular.elements.common.Toggle;
 import com.epam.jdi.light.angular.elements.complex.AutoComplete;
 import com.epam.jdi.light.elements.pageobjects.annotations.locators.UI;
 
@@ -9,7 +9,7 @@ public class AutocompleteSection {
     public AutoComplete autocompleteOverview;
 
     @UI("#autocomplete-overview-slide-toggle")
-    public SlideToggle autocompleteDisableInput;
+    public Toggle autocompleteDisableInput;
 
     @UI("#autocomplete-simple-input")
     public AutoComplete simpleAutocomplete;

@@ -34,11 +34,6 @@ public class CheckboxUnitTests extends TestsInit {
         assertEquals(basicCheckbox.label().getValue(), "Check me!");
     }
 
-    @Test
-    public void indeterminateTest() {
-        indeterminateCheckbox.click();
-        assertTrue(resultCheckbox.isIndeterminate());
-    }
 
     @Test
     public void enabledOptionTest() {

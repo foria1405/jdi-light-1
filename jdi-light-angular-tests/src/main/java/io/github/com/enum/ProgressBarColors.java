@@ -1,4 +1,4 @@
-package com.epam.jdi.light.angular.elements.enums;
+package io.github.com.entities;
 
 public enum ProgressBarColors {
     BLUE("mat-primary"),

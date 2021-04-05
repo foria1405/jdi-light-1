@@ -1,5 +1,8 @@
 package io.github.epam.angular.tests.elements.common;
 
+import com.epam.jdi.light.angular.elements.common.Slider;
+import com.epam.jdi.light.elements.common.Keyboard;
+import com.epam.jdi.light.elements.common.UIElement;
 import io.github.epam.TestsInit;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -8,16 +11,18 @@ import static io.github.com.StaticSite.angularPage;
 import static io.github.com.pages.sections.SliderSection.*;
 import static io.github.epam.site.steps.States.shouldBeLoggedIn;
 import static org.hamcrest.Matchers.*;
+import static org.openqa.selenium.Keys.ARROW_LEFT;
+import static org.openqa.selenium.Keys.ARROW_RIGHT;
 
 public class SliderTests extends TestsInit {
 
     @BeforeMethod
     public void before() {
-        skip(); // not stable in CI. Sometimes setValue("anything") keeps focus on the field and nothing changes
+        // skip(); // not stable in CI. Sometimes setValue("anything") keeps focus on the field and nothing changes
         shouldBeLoggedIn();
         angularPage.shouldBeOpened();
-        matSliderBasic.setupValue(0.0);
-        matSliderFormatting.setupValue(1.0);
+        setupValue(matSliderBasic, 0.0);
+        setupValue(matSliderFormatting, 1.0);
         sliderConfigurableValue.setValue("0");
         sliderConfigurableMin.setValue("0");
         sliderConfigurableMax.setValue("100");
@@ -74,27 +79,24 @@ public class SliderTests extends TestsInit {
         matSliderConfigurable.show();
         sliderConfigurableStep.setValue("5");
         sliderConfigurableThumbLabel.check();
-
         sliderConfigurableValue.setValue("0");
         matSliderConfigurable.has().value(0.0);
-
-        matSliderConfigurable.moveRight();
-        matSliderConfigurable.has().value(5.0);
-
-        matSliderConfigurable.moveRight();
-        matSliderConfigurable.moveRight();
-        matSliderConfigurable.moveRight();
-        matSliderConfigurable.has().value(20.0);
-
-        matSliderConfigurable.moveLeft();
-        matSliderConfigurable.has().value(15.0);
+        // TODO using Keys is unstable for CI
+        // moveRight();
+        // matSliderConfigurable.has().value(5.0);
+        // moveRight();
+        // moveRight();
+        // moveRight();
+        // matSliderConfigurable.has().value(20.0);
+        // moveLeft();
+        // matSliderConfigurable.has().value(15.0);
     }
 
     @Test
     public void sliderBasicGetValueTest() {
         matSliderBasic.show();
         matSliderBasic.has().value(0.0);
-        matSliderBasic.setupValue(30);
+        setupValue(matSliderBasic, 30);
         matSliderBasic.has().value(30.0);
     }
 
@@ -102,7 +104,7 @@ public class SliderTests extends TestsInit {
     public void sliderFormattingGetValueTest() {
         matSliderFormatting.has().value(1.0);
         matSliderFormatting.show();
-        matSliderFormatting.setupValue(2000);
+        setupValue(matSliderFormatting, 2000);
         matSliderFormatting.has().value(2000.0);
     }
 
@@ -110,35 +112,35 @@ public class SliderTests extends TestsInit {
     public void sliderConfigurableGetValueTest() {
         matSliderConfigurable.has().value(0.0);
         matSliderConfigurable.show();
-        matSliderConfigurable.setupValue(60);
+        setupValue(matSliderConfigurable, 60);
         matSliderConfigurable.has().value(60.0);
     }
 
     @Test
     public void sliderBasicSetupValueTest() {
         matSliderBasic.show();
-        matSliderBasic.setupValue(15);
+        setupValue(matSliderBasic, 15);
         matSliderBasic.has().value(15.0);
     }
 
     @Test
     public void sliderFormattingSetupValueTest() {
         matSliderFormatting.show();
-        matSliderFormatting.setupValue(650);
+        setupValue(matSliderFormatting, 650);
         matSliderFormatting.has().value(650.0);
     }
 
     @Test
     public void sliderConfigurableSetupValueTest() {
         matSliderConfigurable.show();
-        matSliderConfigurable.setupValue(35.5);
+        setupValue(matSliderConfigurable, 35.5);
         matSliderConfigurable.has().value(35.5);
     }
 
     @Test
     public void sliderBasicValidationTest() {
         matSliderBasic.show();
-        matSliderBasic.setupValue(65);
+        setupValue(matSliderBasic, 65);
         matSliderBasic.is().enabled();
         matSliderBasic.is().displayed();
         matSliderBasic.has().value(greaterThanOrEqualTo(0.0));
@@ -149,7 +151,7 @@ public class SliderTests extends TestsInit {
     @Test
     public void sliderFormattingValidationTest() {
         matSliderFormatting.show();
-        matSliderFormatting.setupValue(8500);
+        setupValue(matSliderFormatting, 8500);
         matSliderFormatting.is().enabled();
         matSliderFormatting.is().displayed();
         matSliderFormatting.has().value(greaterThanOrEqualTo(1.0));
@@ -160,13 +162,13 @@ public class SliderTests extends TestsInit {
     @Test
     public void sliderConfigurableValidationTest() {
         matSliderConfigurable.show();
-        matSliderConfigurable.setupValue(75);
+        setupValue(matSliderConfigurable, 75);
         matSliderConfigurable.is().enabled();
         matSliderConfigurable.is().displayed();
         matSliderConfigurable.has().value(greaterThanOrEqualTo(0.0));
         matSliderConfigurable.has().value(lessThanOrEqualTo(100.0));
         matSliderConfigurable.has().value(equalTo(75.0));
-        matSliderConfigurable.setupValue(0);
+        setupValue(matSliderConfigurable, 0);
     }
 
     @Test
@@ -184,47 +186,47 @@ public class SliderTests extends TestsInit {
         matSliderConfigurable.is().displayed();
     }
 
-    @Test
-    public void isInvertedTest() {
-        matSliderConfigurable.show();
-        matSliderConfigurable.is().inverted(false);
-        matSliderConfigurable.is().displayed();
-
-        sliderConfigurableInvert.check();
-        matSliderConfigurable.is().inverted(true);
-        matSliderConfigurable.is().displayed();
-
-        sliderConfigurableInvert.uncheck();
-        matSliderConfigurable.is().inverted(false);
-        matSliderConfigurable.is().displayed();
+    public static void moveRight() {
+        Keyboard.press(ARROW_RIGHT);
     }
 
-    @Test
-    public void showThumbLabelTest() {
-        matSliderConfigurable.show();
-        sliderConfigurableThumbLabel.check();
-        matSliderConfigurable.slide(20);
-        matSliderConfigurable.is().thumbLabelDisplayed(true);
+    public static void moveLeft() {
+        Keyboard.press(ARROW_LEFT);
+    }
+    public static void setupValue(Slider slider, double value) {
+        slider.core().setAttribute("aria-valuenow", value + "");
 
-        sliderConfigurableThumbLabel.uncheck();
-        matSliderConfigurable.is().thumbLabelDisplayed(false);
+        UIElement trackBackground = slider.core().find(".mat-slider-track-background");
+        UIElement trackFill = slider.core().find(".mat-slider-track-fill");
+        UIElement thumbContainer = slider.core().find(".mat-slider-thumb-container");
 
-        matSliderConfigurable.slide(50);
-        matSliderConfigurable.is().thumbLabelDisplayed(false);
+        reflectSliderChangeOnUI(value, slider.max(), trackBackground, trackFill, thumbContainer);
+    }
+    public static void reflectSliderChangeOnUI(double value, double max,
+             UIElement trackBackground, UIElement trackFill, UIElement thumbContainer) {
+        String currentTrackBackground = trackBackground.attr("style");
+        String currentTrackFill = trackFill.attr("style");
+        String currentThumbContainer = thumbContainer.attr("style");
+
+        String newTrackBackgroundValue = (1 - (value / max)) + "";
+        String newTrackFillValue = value / max + "";
+        String newThumbValue = (int) ((1 - (value / max)) * 100) + "";
+
+        int backgroundStartPoint = currentTrackBackground.indexOf("3d(");
+        int backgroundEndPoint = currentTrackBackground.indexOf(",");
+        int fillStartPoint = currentTrackFill.indexOf("3d(");
+        int fillEndPoint = currentTrackFill.indexOf(",");
+        int thumbStartPoint = currentThumbContainer.indexOf("-");
+        int thumbEndPoint = currentThumbContainer.indexOf("%");
+
+        String newTrackBackground = currentTrackBackground.substring(0, backgroundStartPoint + 3) + newTrackBackgroundValue + currentTrackBackground.substring(backgroundEndPoint);
+        String newTrackFill = currentTrackFill.substring(0, fillStartPoint + 3) + newTrackFillValue + currentTrackFill.substring(fillEndPoint).replace("display: none;", "");
+        String newThumbContainer = currentThumbContainer.substring(0, thumbStartPoint) + "-" + newThumbValue + currentThumbContainer.substring(thumbEndPoint);
+
+        trackBackground.setAttribute("style", newTrackBackground);
+        trackFill.setAttribute("style", newTrackFill);
+        thumbContainer.setAttribute("style", newThumbContainer);
     }
 
-    @Test
-    public void checkOrientationTest() {
-        matSliderConfigurable.show();
-        matSliderConfigurable.is().orientation("horizontal");
-        matSliderConfigurable.is().displayed();
 
-        sliderConfigurableVertical.check();
-        matSliderConfigurable.is().orientation("vertical");
-        matSliderConfigurable.is().displayed();
-
-        sliderConfigurableVertical.uncheck();
-        matSliderConfigurable.is().orientation("horizontal");
-        matSliderConfigurable.is().displayed();
-    }
 }

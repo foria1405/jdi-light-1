@@ -1,14 +1,9 @@
 package io.github.epam.angular.tests.elements.common;
 
-import com.epam.jdi.light.angular.elements.common.Tooltip;
-import com.epam.jdi.light.angular.elements.composite.MaterialSelectorContainer;
 import com.epam.jdi.tools.func.JAction;
 import io.github.epam.TestsInit;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import static com.epam.jdi.light.elements.composite.WebPage.refresh;
 import static io.github.com.StaticSite.angularPage;
@@ -29,36 +24,7 @@ public class TooltipTests extends TestsInit {
     @Test
     public void basicTooltipTest() {
         basicTooltipButton.hover();
-        tooltip.has().assertTooltipText("Petit a petit, l’oiseau fait son nid");
-    }
-
-    @Test
-    public void customPositionTooltipTest() {
-        Map<String, Tooltip.Position> position = new HashMap<>();
-        position.put("after", Tooltip.Position.RIGHT);
-        position.put("before", Tooltip.Position.LEFT);
-        position.put("above", Tooltip.Position.ABOVE);
-        position.put("below", Tooltip.Position.BELOW);
-        position.put("left", Tooltip.Position.LEFT);
-        position.put("right", Tooltip.Position.RIGHT);
-
-        positionTooltipButton.show();
-
-        position.forEach(
-                (k, v) -> {
-                    positionTooltipSelector.click();
-                    (new MaterialSelectorContainer()).select(k);
-                    positionTooltipButton.hover();
-                    tooltip.has().assertTooltipPosition(v, positionTooltipButton);
-                }
-        );
-    }
-
-    @Test
-    public void colorTooltipTest() {
-        String red = "rgba(183, 28, 28, 1)";
-        colorTooltipButton.hover();
-        tooltip.has().assertTooltipColor(red);
+        tooltip.has().text("Petit a petit, l’oiseau fait son nid");
     }
 
     @Test
@@ -112,7 +78,7 @@ public class TooltipTests extends TestsInit {
         changeMessageTooltipTextField.setValue(message);
 
         changeMessageTooltipButton.hover();
-        tooltip.has().assertTooltipText(message);
+        tooltip.has().text(message);
     }
 
     @Test

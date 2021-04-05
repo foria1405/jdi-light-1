@@ -1,7 +1,5 @@
 package io.github.com.pages.sections;
 
-import com.epam.jdi.light.angular.elements.complex.FormField;
-
 public class FormFieldsSection {
     public static FormField simpleFormFieldInput;
     public static FormField formFieldWithLabelInputSimplePlaceholder;

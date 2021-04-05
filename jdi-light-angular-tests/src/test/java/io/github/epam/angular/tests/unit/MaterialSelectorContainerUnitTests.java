@@ -1,6 +1,5 @@
 package io.github.epam.angular.tests.unit;
 
-import com.epam.jdi.light.angular.elements.composite.MaterialSelectorContainer;
 import com.epam.jdi.light.elements.complex.WebList;
 import io.github.epam.TestsInit;
 import org.openqa.selenium.By;

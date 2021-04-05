@@ -1,7 +1,7 @@
 package io.github.com.pages.sections;
 
 import com.epam.jdi.light.angular.elements.common.Checkbox;
-import com.epam.jdi.light.angular.elements.common.SlideToggle;
+import com.epam.jdi.light.angular.elements.common.Toggle;
 import com.epam.jdi.light.elements.composite.Section;
 import com.epam.jdi.light.elements.pageobjects.annotations.locators.Css;
 import com.epam.jdi.light.elements.pageobjects.annotations.locators.UI;
@@ -11,10 +11,10 @@ import com.epam.jdi.light.ui.html.elements.complex.RadioButtons;
 public class SlideToggleSection extends Section {
 
     @UI("#slide-toggles-basic")
-    public static SlideToggle basicSlideToggle;
+    public static Toggle basicSlideToggle;
 
     @UI("#slide-toggles-configured")
-    public static SlideToggle resultSlideToggle;
+    public static Toggle resultSlideToggle;
 
     @UI("#slide-toggles-set_checked_checkbox")
     public static Checkbox checkedCheckbox;

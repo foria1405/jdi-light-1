@@ -1,18 +1,13 @@
 package io.github.com.pages;
 
-import com.epam.jdi.light.angular.elements.complex.BottomSheet;
-import com.epam.jdi.light.angular.elements.complex.Dialog;
-import com.epam.jdi.light.angular.elements.complex.Ripple;
+import com.epam.jdi.light.elements.complex.WebList;
 import com.epam.jdi.light.elements.composite.WebPage;
 import com.epam.jdi.light.elements.pageobjects.annotations.locators.UI;
 import com.epam.jdi.light.ui.html.elements.common.Icon;
 import io.github.com.pages.sections.AutocompleteSection;
 import io.github.com.pages.sections.BadgeSection;
 import io.github.com.pages.sections.BasicButtonsSection;
-import io.github.com.pages.sections.ButtonToggleSection;
-import io.github.com.pages.sections.CardSection;
 import io.github.com.pages.sections.CheckboxSection;
-import io.github.com.pages.sections.ChipsSection;
 import io.github.com.pages.sections.DatepickerSection;
 import io.github.com.pages.sections.ExpansionPanelSection;
 import io.github.com.pages.sections.FormFieldsSection;
@@ -43,7 +38,7 @@ public class AngularPage extends WebPage {
     public static Icon svgIcon;
     public static Ripple rippleContainer;
     @UI("#bottom-sheet")
-    public static BottomSheet bottomSheet;
+    public static WebList bottomSheet;
     public static Dialog dialog;
     public static RadioButtonSection radioButtonSection;
     public static CheckboxSection checkboxSection;

@@ -9,8 +9,8 @@ public class ProgressBarSection extends Section {
     public static Button showIndeterminateProgressBarButton;
     public static ProgressBar matProgressBarIndeterminate;
     public static Button showBufferProgressBarButton;
-    public static ProgressBar matProgressBarBuffer;
-    public static ProgressBar matProgressBarDeterminate;
+    public static ProgressBar progressBarBuffer;
+    public static ProgressBar progressBar;
     public static ProgressBar matProgressBarQuery;
     public static ProgressBar matProgressBarConfigurable;
     public static Button progressBarsPrimaryColorRadio;

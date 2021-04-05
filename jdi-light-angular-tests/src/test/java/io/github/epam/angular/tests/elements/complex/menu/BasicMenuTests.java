@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-import static com.epam.jdi.light.angular.elements.complex.NestedDropdownMenu.BASIC_MENU_VALUES;
+import static com.epam.jdi.light.angular.elements.complex.DropdownMenu.BASIC_MENU_VALUES;
 import static io.github.com.StaticSite.angularPage;
 import static io.github.com.pages.sections.MenuSection.basicMenuButton;
 import static io.github.com.pages.sections.MenuSection.basicMenuSelectedOption;

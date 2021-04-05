@@ -40,22 +40,4 @@ public class SliderAssert extends UIAssert<SliderAssert, Slider> {
         return maxValue(Matchers.is(maxValue));
     }
 
-    @JDIAction("Assert that '{name}' orientation is vertical")
-    public SliderAssert orientation(String orientation) {
-        jdiAssert(element().orientation(), Matchers.is(orientation));
-        return this;
-    }
-
-    @JDIAction("Assert that '{name}' axis are inverted")
-    public SliderAssert inverted(boolean value) {
-        jdiAssert(element().isInverted(), Matchers.is(value));
-        return this;
-    }
-
-
-    @JDIAction("Assert that '{name'} thumb label is displayed")
-    public SliderAssert thumbLabelDisplayed(boolean value) {
-        jdiAssert(element().isThumbLabelDisplayed(), Matchers.is(value));
-        return this;
-    }
 }

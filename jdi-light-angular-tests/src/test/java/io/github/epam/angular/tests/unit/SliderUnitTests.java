@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 
 import static io.github.com.StaticSite.angularPage;
 import static io.github.com.pages.sections.SliderSection.*;
+import static io.github.epam.angular.tests.elements.common.SliderTests.setupValue;
 import static io.github.epam.site.steps.States.shouldBeLoggedIn;
 import static org.testng.Assert.*;
 
@@ -14,8 +15,8 @@ public class SliderUnitTests extends TestsInit {
     public void before() {
         shouldBeLoggedIn();
         angularPage.shouldBeOpened();
-        matSliderBasic.setupValue(0.0);
-        matSliderFormatting.setupValue(1.0);
+        setupValue(matSliderBasic, 0.0);
+        setupValue(matSliderFormatting, 1.0);
         sliderConfigurableMin.setValue("0");
         sliderConfigurableMax.setValue("100");
         sliderConfigurableStep.setValue("1");
@@ -58,38 +59,26 @@ public class SliderUnitTests extends TestsInit {
 
     @Test
     public void setDoubleValueToSliderTest() {
-        matSliderBasic.setupValue(45.0);
+        setupValue(matSliderBasic, 45.0);
         assertEquals(matSliderBasic.value(), 45.0);
 
-        matSliderFormatting.setupValue(4353.8);
+        setupValue(matSliderFormatting, 4353.8);
         assertEquals(matSliderFormatting.value(), 4353.8);
 
-        matSliderConfigurable.setupValue(34.5);
+        setupValue(matSliderConfigurable, 34.5);
         assertEquals(matSliderConfigurable.value(), 34.5);
     }
 
     @Test
     public void setIntValueToSliderTest() {
-        matSliderBasic.setupValue(45);
+        setupValue(matSliderBasic, 45);
         assertEquals(matSliderBasic.value(), 45.0);
 
-        matSliderFormatting.setupValue(4353);
+        setupValue(matSliderFormatting, 4353);
         assertEquals(matSliderFormatting.value(), 4353.0);
 
-        matSliderConfigurable.setupValue(34);
+        setupValue(matSliderConfigurable, 34);
         assertEquals(matSliderConfigurable.value(), 34.0);
-    }
-
-    @Test
-    public void setOrientationTest() {
-        matSliderConfigurable.show();
-        assertEquals(matSliderConfigurable.orientation(), "horizontal");
-
-        sliderConfigurableVertical.check();
-        assertEquals(matSliderConfigurable.orientation(), "vertical");
-
-        sliderConfigurableVertical.uncheck();
-        assertEquals(matSliderConfigurable.orientation(), "horizontal");
     }
 
     @Test

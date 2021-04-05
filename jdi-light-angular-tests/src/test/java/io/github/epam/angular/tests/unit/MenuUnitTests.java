@@ -6,7 +6,6 @@ import org.testng.annotations.Test;
 
 import java.util.Arrays;
 
-import static com.epam.jdi.light.angular.elements.complex.NestedDropdownMenu.*;
 import static io.github.com.StaticSite.angularPage;
 import static io.github.com.pages.sections.MenuSection.*;
 import static io.github.epam.site.steps.States.shouldBeLoggedIn;

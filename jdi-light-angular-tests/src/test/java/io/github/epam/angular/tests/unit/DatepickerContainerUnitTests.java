@@ -1,7 +1,6 @@
 package io.github.epam.angular.tests.unit;
 
-import com.epam.jdi.light.angular.elements.composite.DatepickerContainer;
-import com.epam.jdi.light.angular.entities.DatepickerNavigation;
+import io.github.com.entities.DatepickerNavigation;
 import io.github.epam.TestsInit;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -13,7 +12,7 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
-import static com.epam.jdi.light.angular.entities.DatepickerNavigation.*;
+import static io.github.com.entities.DatepickerNavigation.*;
 import static com.epam.jdi.light.elements.composite.WebPage.refresh;
 import static io.github.com.StaticSite.angularPage;
 import static io.github.com.pages.sections.DatepickerSection.*;

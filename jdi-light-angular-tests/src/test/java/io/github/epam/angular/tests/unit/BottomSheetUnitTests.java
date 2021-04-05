@@ -20,41 +20,41 @@ public class BottomSheetUnitTests extends TestsInit {
     private static final List<String> BOTTOM_SHEET_VALUES =
             Arrays.asList("Google Keep", "Google Docs", "Google Plus", "Google Hangouts");
 
-    @BeforeMethod(alwaysRun = true)
-    public void before() {
-        shouldBeLoggedIn();
-        angularPage.shouldBeOpened();
-        bottomSheet.show();
-    }
-
-    @BeforeMethod
-    // required to reload before each test
-    public void reloadPage() {
-        reload();
-        bottomSheet.show();
-    }
-
-    @Test
-    public void openedTest() {
-        bottomSheet.open();
-        assertTrue(bottomSheet.isOpened());
-    }
-
-    @Test
-    public void closedTest() {
-        bottomSheet.open();
-        bottomSheet.close();
-        assertTrue(bottomSheet.isClosed());
-    }
-
-    @Test
-    public void valuesTest() {
-        bottomSheet.open();
-        assertEquals(bottomSheet.values(), BOTTOM_SHEET_VALUES);
-    }
-
-    @AfterClass
-    public void tearDownClass() {
-        reload();
-    }
+    // @BeforeMethod(alwaysRun = true)
+    // public void before() {
+    //     shouldBeLoggedIn();
+    //     angularPage.shouldBeOpened();
+    //     bottomSheet.show();
+    // }
+//
+    // @BeforeMethod
+    // // required to reload before each test
+    // public void reloadPage() {
+    //     reload();
+    //     bottomSheet.show();
+    // }
+//
+    // @Test
+    // public void openedTest() {
+    //     bottomSheet.open();
+    //     assertTrue(bottomSheet.isOpened());
+    // }
+//
+    // @Test
+    // public void closedTest() {
+    //     bottomSheet.open();
+    //     bottomSheet.close();
+    //     assertTrue(bottomSheet.isClosed());
+    // }
+//
+    // @Test
+    // public void valuesTest() {
+    //     bottomSheet.open();
+    //     assertEquals(bottomSheet.values(), BOTTOM_SHEET_VALUES);
+    // }
+//
+    // @AfterClass
+    // public void tearDownClass() {
+    //     reload();
+    // }
 }
