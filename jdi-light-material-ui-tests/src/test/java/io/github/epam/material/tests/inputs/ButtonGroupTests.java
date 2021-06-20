@@ -2,12 +2,8 @@ package io.github.epam.material.tests.inputs;
 
 import io.github.epam.TestsInit;
 import org.testng.annotations.Test;
-
-import static io.github.com.StaticSite.buttonGroupFrame;
-import static io.github.com.StaticSite.inputButtonGroupDefaultPage;
-import static io.github.com.StaticSite.inputButtonGroupDisabledPage;
-import static io.github.com.StaticSite.inputButtonGroupSplitPage;
-import static io.github.com.StaticSite.splitButtonGroupFrame;
+import static io.github.com.StaticSite.*;
+import io.github.com.pages.inputs.ButtonGroupPage.*;
 
 public class ButtonGroupTests extends TestsInit {
 
@@ -15,24 +11,24 @@ public class ButtonGroupTests extends TestsInit {
     public void defaultButtonGroupTest() {
         inputButtonGroupDefaultPage.open();
 
-        buttonGroupFrame.buttonGroup.getButtonByIndex(1).click();
-        buttonGroupFrame.buttonGroup.getButtonByIndex(2).click();
-        buttonGroupFrame.buttonGroup.getButtonByIndex(3).click();
+        buttonGroupPage.buttonGroup.getButtonByIndex(1).click();
+        buttonGroupPage.buttonGroup.getButtonByIndex(2).click();
+        buttonGroupPage.buttonGroup.getButtonByIndex(3).click();
 
-        buttonGroupFrame.buttonGroup.getButtonByText("Three").click();
-        buttonGroupFrame.buttonGroup.getButtonByText("Two").click();
-        buttonGroupFrame.buttonGroup.getButtonByText("One").click();
+        buttonGroupPage.buttonGroup.getButtonByText("Three").click();
+        buttonGroupPage.buttonGroup.getButtonByText("Two").click();
+        buttonGroupPage.buttonGroup.getButtonByText("One").click();
 
-        buttonGroupFrame.buttonGroup.getButtonByIndex(1).is().enabled();
-        buttonGroupFrame.buttonGroup.getButtonByIndex(1).has().text("ONE");
+        buttonGroupPage.buttonGroup.getButtonByIndex(1).is().enabled();
+        buttonGroupPage.buttonGroup.getButtonByIndex(1).has().text("ONE");
     }
 
     @Test
     public void disabledButtonGroupTest() {
         inputButtonGroupDisabledPage.open();
 
-        buttonGroupFrame.buttonGroup.getButtonByIndex(1).is().disabled();
-        buttonGroupFrame.buttonGroup.getButtonByText("Two").is().disabled();
+        buttonGroupPage.buttonGroup.getButtonByIndex(1).is().disabled();
+        buttonGroupPage.buttonGroup.getButtonByText("Two").is().disabled();
     }
 
     @Test

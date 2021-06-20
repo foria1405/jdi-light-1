@@ -88,13 +88,13 @@ public class StaticSite {
     public static CheckboxPage checkboxPage;
 
     // button group
-    @Frame("storybook-preview-iframe")
-    public static ButtonGroupFrame buttonGroupFrame;
+
+    public static ButtonGroupPage buttonGroupPage;
 
     @Frame("storybook-preview-iframe")
     public static SplitButtonGroupFrame splitButtonGroupFrame;
 
-    @Url("/material-ui-inputs-button-group--default")
+    @Url("/button_groups")
     public static WebPage inputButtonGroupDefaultPage;
 
     @Url("/material-ui-inputs-button-group--disabled")
